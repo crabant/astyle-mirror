@@ -1930,6 +1930,11 @@ void ASConsole::printHelp() const
 	cout << "    ####. The path may include a directory path and a file name, or a\n";
 	cout << "    file name only. Paths containing spaces must be enclosed in quotes.\n";
 	cout << endl;
+	cout << "Bug Fix Options:\n";
+	cout << "----------------\n";
+	cout << "    --apply-preproc-indent-fix \n";
+	cout << "    apply preproc indent fix (default false)\n";
+	cout << endl;
 	cout << endl;
 }
 
@@ -3175,6 +3180,10 @@ void ASOptions::parseOption(const string &arg, const string &errorInfo)
 			formatter.setLineEndFormat(LINEEND_LINUX);
 		else if (lineendType == 3)
 			formatter.setLineEndFormat(LINEEND_MACOLD);
+	}
+	else if ( isOption(arg,  "apply-preproc-indent-fix") )
+	{
+		formatter.setApplyPreprocIndentFix(true);
 	}
 	else
 		isOptionError(arg, errorInfo);

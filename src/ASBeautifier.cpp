@@ -80,6 +80,7 @@ ASBeautifier::ASBeautifier()
 	setPreprocDefineIndent(false);
 	setPreprocConditionalIndent(false);
 	setAlignMethodColon(false);
+	setApplyPreprocIndentFix(false);
 
 	// initialize ASBeautifier member vectors
 	beautifierFileType = 9;		// reset to an invalid type
@@ -263,6 +264,7 @@ ASBeautifier::ASBeautifier(const ASBeautifier &other) : ASBase(other)
 	currentNonSpaceCh = other.currentNonSpaceCh;
 	currentNonLegalCh = other.currentNonLegalCh;
 	prevNonLegalCh = other.prevNonLegalCh;
+	applyPreprocIndentFix = other.applyPreprocIndentFix;
 }
 
 /**
@@ -671,6 +673,12 @@ void ASBeautifier::setPreprocConditionalIndent(bool state)
 {
 	shouldIndentPreprocConditional = state;
 }
+	
+
+void ASBeautifier::setApplyPreprocIndentFix(bool fix)
+{
+	applyPreprocIndentFix = fix;
+}
 
 /**
  * set the state of the empty line fill option.
@@ -798,6 +806,17 @@ bool ASBeautifier::getModifierIndent(void) const
 bool ASBeautifier::getSwitchIndent(void) const
 {
 	return switchIndent;
+}
+	
+	
+/**
+ * get the state of the apply preproc indent fix option.
+ *
+ * @return   state of applyPreprocIndentFix option.
+ */
+bool ASBeautifier::getApplyPreprocIndentFix(void) const
+{
+	return applyPreprocIndentFix;
 }
 
 /**
@@ -959,6 +978,15 @@ string ASBeautifier::beautify(const string &originalLine)
 		{
 			backslashEndsPrevLine = false;
 			isInDefine = false;
+			if(isInDefineDefinition && getApplyPreprocIndentFix())
+			{
+				ASBeautifier* defineBeautifier;
+				
+				defineBeautifier = activeBeautifierStack->back();
+				activeBeautifierStack->pop_back();
+				
+				delete defineBeautifier;
+			}
 			isInDefineDefinition = false;
 		}
 		if (emptyLineFill && !isInQuoteContinuation)

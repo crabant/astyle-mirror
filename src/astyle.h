@@ -364,6 +364,7 @@ class ASBeautifier : protected ASResource, protected ASBase
 		void setTabIndentation(int length = 4, bool forceTabs = false);
 		void setPreprocDefineIndent(bool state);
 		void setPreprocConditionalIndent(bool state);
+		void setApplyPreprocIndentFix(bool fix);
 		int  getBeautifierFileType() const;
 		int  getFileType() const;
 		int  getIndentLength(void) const;
@@ -381,6 +382,7 @@ class ASBeautifier : protected ASResource, protected ASBase
 		bool getNamespaceIndent(void) const;
 		bool getPreprocDefineIndent(void) const;
 		bool getSwitchIndent(void) const;
+		bool getApplyPreprocIndentFix(void) const;
 
 	protected:
 		void deleteBeautifierVectors();
@@ -539,6 +541,7 @@ class ASBeautifier : protected ASResource, protected ASBase
 		bool foundPreCommandMacro;
 		bool shouldAlignMethodColon;
 		bool shouldIndentPreprocConditional;
+		bool applyPreprocIndentFix;
 		int  indentCount;
 		int  spaceIndentCount;
 		int  spaceIndentObjCMethodDefinition;

@@ -81,6 +81,7 @@ ASBeautifier::ASBeautifier()
 	setPreprocConditionalIndent(false);
 	setAlignMethodColon(false);
 	setApplyPreprocIndentFix(false);
+	setApplyFixPreprocSmallFile(false);
 
 	// initialize ASBeautifier member vectors
 	beautifierFileType = 9;		// reset to an invalid type
@@ -265,6 +266,7 @@ ASBeautifier::ASBeautifier(const ASBeautifier &other) : ASBase(other)
 	currentNonLegalCh = other.currentNonLegalCh;
 	prevNonLegalCh = other.prevNonLegalCh;
 	applyPreprocIndentFix = other.applyPreprocIndentFix;
+	applyFixPreprocSmallFile=other.applyFixPreprocSmallFile;
 }
 
 /**
@@ -679,6 +681,11 @@ void ASBeautifier::setApplyPreprocIndentFix(bool fix)
 {
 	applyPreprocIndentFix = fix;
 }
+	
+void ASBeautifier::setApplyFixPreprocSmallFile(bool fix)
+{
+	applyFixPreprocSmallFile = fix;
+}
 
 /**
  * set the state of the empty line fill option.
@@ -818,6 +825,17 @@ bool ASBeautifier::getApplyPreprocIndentFix(void) const
 {
 	return applyPreprocIndentFix;
 }
+
+/**
+ * get the state of the apply fix preproc small file option.
+ *
+ * @return   state of applyFixPreprocSmallFile option.
+ */
+bool ASBeautifier::getApplyFixPreprocSmallFile(void) const
+{
+	return applyFixPreprocSmallFile;
+}
+	
 
 /**
  * get the state of the case indentation option. If true, lines of 'case'

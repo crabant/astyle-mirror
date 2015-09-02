@@ -365,6 +365,7 @@ class ASBeautifier : protected ASResource, protected ASBase
 		void setPreprocDefineIndent(bool state);
 		void setPreprocConditionalIndent(bool state);
 		void setApplyPreprocIndentFix(bool fix);
+		void setApplyFixPreprocSmallFile(bool fix);
 		int  getBeautifierFileType() const;
 		int  getFileType() const;
 		int  getIndentLength(void) const;
@@ -383,6 +384,7 @@ class ASBeautifier : protected ASResource, protected ASBase
 		bool getPreprocDefineIndent(void) const;
 		bool getSwitchIndent(void) const;
 		bool getApplyPreprocIndentFix(void) const;
+		bool getApplyFixPreprocSmallFile(void) const;
 
 	protected:
 		void deleteBeautifierVectors();
@@ -542,6 +544,7 @@ class ASBeautifier : protected ASResource, protected ASBase
 		bool shouldAlignMethodColon;
 		bool shouldIndentPreprocConditional;
 		bool applyPreprocIndentFix;
+		bool applyFixPreprocSmallFile;
 		int  indentCount;
 		int  spaceIndentCount;
 		int  spaceIndentObjCMethodDefinition;

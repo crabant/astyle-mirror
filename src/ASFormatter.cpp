@@ -5964,7 +5964,7 @@ EndOfWhileLoop:
 	if (isFirstPreprocConditional)
 	{
 		isFirstPreprocConditional = false;
-		if (nextText.empty())
+		if (nextText.empty() && (getApplyFixPreprocSmallFile() || sourceIterator->getStreamLength() > 250))
 		{
 			isInIndentableBlock = false;
 			preprocBlockEnd = 0;

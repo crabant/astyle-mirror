@@ -1935,6 +1935,9 @@ void ASConsole::printHelp() const
 	cout << "    --apply-preproc-indent-fix \n";
 	cout << "    apply preproc indent fix (default false)\n";
 	cout << endl;
+	cout << "    --apply-fix-preproc-small-file \n";
+	cout << "    apply fix preproc small file (default false)\n";
+	cout << endl;
 	cout << endl;
 }
 
@@ -3184,6 +3187,10 @@ void ASOptions::parseOption(const string &arg, const string &errorInfo)
 	else if ( isOption(arg,  "apply-preproc-indent-fix") )
 	{
 		formatter.setApplyPreprocIndentFix(true);
+	}
+	else if ( isOption(arg,  "apply-fix-preproc-small-file") )
+	{
+		formatter.setApplyFixPreprocSmallFile(true);
 	}
 	else
 		isOptionError(arg, errorInfo);
